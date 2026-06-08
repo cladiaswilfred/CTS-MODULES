@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Try Catch Example</title>
+</head>
+<body>
+<h2>Available Workshops</h2>
+<div id="result"></div>
+<script>
+let workshopList = [
+    {name:"Painting", spots:3},
+    {name:"Music", spots:0}
+];
+let output = "";
+workshopList.forEach(function(w){
+    if(w.spots > 0){
+        output += w.name + "<br>";
+    }
+});
+try{
+    let session = undefined;
+    session.name;
+}
+catch(e){
+    output += "<br>Something went wrong";
+}
+document.getElementById("result").innerHTML = output;
+</script>
+</body>
+</html>

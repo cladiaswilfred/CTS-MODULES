@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Course Registration</title>
+ <style>
+  form {
+   width: 300px;
+   margin: auto;
+   padding: 20px;
+   border: 1px solid #555;
+  }
+  input, select, textarea {
+   width: 100%;
+   margin-bottom: 10px;
+  }
+ </style>
+</head>
+<body>
+<h2 align="center">Register for a Course</h2>
+<form onsubmit="showConfirm(); return false;">
+  <input type="text" placeholder="Your Name" required autofocus>
+  <input type="email" placeholder="Your Email" required>
+  <input type="date" required>
+  <select required>
+   <option>Pick a Course</option>
+   <option>Python Basics</option>
+   <option>Cloud Computing</option>
+  </select>
+  <textarea placeholder="Anything to add?"></textarea>
+  <button type="submit">Register</button>
+  <output id="resultMsg"></output>
+</form>
+<script>
+function showConfirm() {
+  document.getElementById("resultMsg").innerText =
+    "Registration successful!";
+}
+</script>
+</body>
+</html>

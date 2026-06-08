@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Styled Data Table</title>
+    <style>
+        table{
+            width: 85%;
+            border-collapse: collapse;
+            margin: 30px auto;
+            text-align: center;
+            font-family: 'Calibri', sans-serif;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+        }
+        th, td{
+            border: 2px solid #aab7b8;
+            padding: 14px 10px;
+        }
+        th{
+            background-color: #1f618d;
+            color: #eaf2f8;
+            font-size: 1.1rem;
+            letter-spacing: 0.8px;
+        }
+        tr:nth-child(even){
+            background-color: #deedf7;
+        }
+        tr:hover{
+            background-color: #f9e79f;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Activity</th>
+        <th>Date</th>
+        <th>Venue</th>
+    </tr>
+    <tr>
+        <td>Yoga Session</td>
+        <td>8 Aug</td>
+        <td>Quadrangle</td>
+    </tr>
+    <tr>
+        <td>Startup Pitch</td>
+        <td>15 Aug</td>
+        <td>Auditorium</td>
+    </tr>
+</table>
+</body>
+</html>

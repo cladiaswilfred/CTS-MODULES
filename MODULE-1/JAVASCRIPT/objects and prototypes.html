@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Constructor & Prototype</title>
+</head>
+<body>
+<div id="result"></div>
+<script>
+function Workshop(name,capacity){
+    this.name = name;
+    this.capacity = capacity;
+}
+Workshop.prototype.isFull = function(){
+    return this.capacity <= 0
+    ? "Fully Booked"
+    : "Available";
+}
+let w1 = new Workshop("Pottery",8);
+document.getElementById("result").innerHTML =
+w1.name + "<br>" +
+w1.isFull();
+</script>
+</body>
+</html>

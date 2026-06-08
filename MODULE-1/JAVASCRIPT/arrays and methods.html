@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Methods</title>
+</head>
+<body>
+<div id="result"></div>
+<script>
+let items = [];
+items.push("Planning");
+items.push("Execution");
+let displayItems = items.map(item => item);
+document.getElementById("result").innerHTML =
+displayItems.join(" - ");
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debugging with Breakpoints</title>
+</head>
+<body>
+<h2 id="status"></h2>
+<button onclick="startDebug()">
+    Start
+</button>
+<script>
+function startDebug(){
+    let inventory = 25;
+    inventory--;
+    document.getElementById("status").innerHTML =
+    "Inventory Count: " + inventory;
+}
+</script>
+</body>
+</html>

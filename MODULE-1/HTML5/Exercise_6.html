@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Form Playground</title>
+ <script>
+  function validateZip() {
+   let code = document.getElementById("zip").value;
+   if(code.length != 6) {
+    alert("Zip code must be 6 digits");
+   }
+  }
+  function showPrice() {
+   let price = document.getElementById("plan").value;
+   document.getElementById("priceBox").innerHTML =
+    "Plan Price: $" + price;
+  }
+  function submitForm() {
+   alert("Your info was saved");
+  }
+  function enlargePhoto(img) {
+   img.style.width = "300px";
+  }
+  function countLetters() {
+   let text = document.getElementById("notes").value;
+   document.getElementById("letterCount").innerHTML =
+    "Count: " + text.length + " letters";
+  }
+ </script>
+</head>
+<body>
+<center>
+<h2>Tell Us About Yourself</h2>
+Zip Code:
+<input type="text" id="zip" onblur="validateZip()">
+<br><br>
+Select Plan:
+<select id="plan" onchange="showPrice()">
+  <option value="30">Starter</option>
+  <option value="90">Premium</option>
+</select>
+<p id="priceBox"></p>
+<button onclick="submitForm()">Submit</button>
+<br><br>
+<img src="https://picsum.photos/seed/avatar/150/150" width="150"
+ondblclick="enlargePhoto(this)">
+<br><br>
+<textarea id="notes" onkeyup="countLetters()"></textarea>
+<p id="letterCount">Count: 0 letters</p>
+</center>
+</body>
+</html>

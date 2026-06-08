@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <style>
+        body{
+            font-size: 2vw;
+            margin: 0 4vw;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        nav{
+            display: flex;
+            justify-content: space-around;
+            background: #2c3e50;
+            padding: 1.2vw 0;
+            border-radius: 0 0 12px 12px;
+        }
+        nav a{
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5vw 1vw;
+        }
+        nav a:hover{
+            background: #34495e;
+            border-radius: 6px;
+        }
+        img{
+            width: 60vw;
+            max-width: 100%;
+            display: block;
+            margin: 3vw auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        @media screen and (max-width:600px){
+            nav{
+                flex-direction: column;
+                text-align: center;
+                gap: 6px;
+                padding: 10px 0;
+            }
+            body{
+                font-size: 4.5vw;
+                margin: 0 4vw;
+            }
+            img{
+                width: 92vw;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Events</a>
+    <a href="#">Contact</a>
+</nav>
+<img src="https://picsum.photos/seed/festival/800/600" alt="Campus event banner">
+</body>
+</html>

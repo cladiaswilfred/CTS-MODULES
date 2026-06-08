@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide - EventHub Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-deep">
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand-link" href="index.html">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+        <span style="color:var(--text-main);font-weight:600;">Help Guide</span>
+    </div>
+</header>
+
+<main class="container" style="max-width:800px;margin-top:100px;">
+
+    <div class="panel">
+        <h4 style="font-size:1.5rem;"><i class="fa-solid fa-book"></i> About This Portal</h4>
+        <p class="text-secondary">Overview of architecture and how things work.</p>
+        <hr style="border-color:var(--border-dim);margin:20px 0;">
+
+        <h5 style="margin-bottom:12px;"><i class="fa-solid fa-paint-brush text-secondary"></i> Styling</h5>
+        <p>All styles are custom CSS using CSS custom properties. No UI framework is used.</p>
+
+        <h5 style="margin:20px 0 12px;">Organization</h5>
+        <ul style="color:var(--text-dim);padding-left:20px;">
+            <li><strong>Theme:</strong> Colors in <code>:root</code> of <code>styles.css</code>.</li>
+            <li><strong>Layout:</strong> CSS Grid for cards, Flexbox for nav and forms.</li>
+            <li><strong>Responsive:</strong> Media queries without framework grid.</li>
+        </ul>
+
+        <div class="promo-banner" style="margin-top:24px;display:block;">
+            <h5><i class="fa-solid fa-lightbulb"></i> Customizing</h5>
+            <p class="mb-0">Edit <code>--accent-1</code> and <code>--bg-deep</code> in <code>styles.css</code> to change the color scheme.</p>
+        </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:80px;">
+        <h4 style="font-size:1.5rem;"><i class="fa-solid fa-code"></i> JavaScript</h4>
+        <p>The app uses ES6+ vanilla JavaScript.</p>
+
+        <ul style="color:var(--text-dim);padding-left:20px;">
+            <li><strong>Modals:</strong> Toggled by adding/removing <code>.show</code> class.</li>
+            <li><strong>Data:</strong> Uses <code>fetch()</code> with async/await for mock data.</li>
+            <li><strong>Rendering:</strong> Events built with <code>createElement</code> and template literals.</li>
+        </ul>
+
+        <hr style="border-color:var(--border-dim);margin:20px 0;">
+        <p class="text-center text-secondary mb-0">See README for deployment details.</p>
+    </div>
+
+</main>
+
+<footer class="site-footer" style="margin-top:auto;">
+    <div class="container text-center">
+        <p class="text-secondary">&copy; 2026 EventHub Portal Docs</p>
+    </div>
+</footer>
+
+</body>
+</html>

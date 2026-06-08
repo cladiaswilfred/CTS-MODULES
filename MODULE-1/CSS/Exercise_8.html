@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Box Model Concepts</title>
+    <style>
+        .eventCard{
+            border: 4px double #8e44ad;
+            padding: 20px 30px;
+            margin: 20px auto;
+            width: 280px;
+            background: #f4ecf7;
+            border-radius: 16px;
+        }
+        input:focus{
+            outline: 3px solid #2980b9;
+            border-color: #2980b9;
+            box-shadow: 0 0 8px rgba(41,128,185,0.4);
+        }
+        .hidden{
+            visibility: hidden;
+        }
+        .none{
+            display: none;
+        }
+        input{
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 240px;
+        }
+    </style>
+</head>
+<body>
+<div class="eventCard">
+    <h2>Science Expo</h2>
+    <p>Interactive exhibits from physics, chemistry, and biology clubs.</p>
+</div>
+<input type="text" placeholder="Enter your student ID">
+<p class="hidden">You cannot see this due to visibility hidden.</p>
+<p class="none">You cannot see this due to display none.</p>
+</body>
+</html>

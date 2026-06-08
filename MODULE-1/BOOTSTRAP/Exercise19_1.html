@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 19.1</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="container py-5 text-center">
+    <h2 class="mb-5 fw-bold">Tooltips & Popovers</h2>
+    <button class="btn btn-secondary me-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Hello there!">Hover</button>
+    <button class="btn btn-outline-primary" data-bs-toggle="popover" title="Info" data-bs-content="Popover content goes here.">Click</button>
+</div>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script>
+const tips = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+;[].forEach.call(tips, function(el){
+    new bootstrap.Tooltip(el)
+})
+const pops = document.querySelectorAll('[data-bs-toggle="popover"]')
+;[].forEach.call(pops, function(el){
+    new bootstrap.Popover(el)
+})
+</script>
+</body>
+</html>

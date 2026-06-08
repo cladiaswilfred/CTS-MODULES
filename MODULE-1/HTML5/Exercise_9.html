@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Where Am I</title>
+ <script>
+  function findMe() {
+   if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+     showPosition,
+     showError,
+     {
+      enableHighAccuracy: false,
+      timeout: 10000
+     }
+    );
+   } else {
+    alert("Geolocation not supported");
+   }
+  }
+  function showPosition(pos) {
+   document.getElementById("location").innerHTML =
+    "Latitude: " + pos.coords.latitude +
+    "<br>Longitude: " +
+    pos.coords.longitude;
+  }
+  function showError(err) {
+   alert("Location error: " + err.message);
+  }
+ </script>
+</head>
+<body>
+<center>
+<h2>Check Your Location</h2>
+<button onclick="findMe()">
+  Get Coordinates
+</button>
+<p id="location"></p>
+</center>
+</body>
+</html>

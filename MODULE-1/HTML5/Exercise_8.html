@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>My Preferences</title>
+ <script>
+  function savePref() {
+   let choice =
+    document.getElementById("theme").value;
+   localStorage.setItem("userTheme", choice);
+   alert("Preference saved");
+  }
+  function loadPref() {
+   let saved =
+    localStorage.getItem("userTheme");
+   if(saved) {
+    document.getElementById("theme").value = saved;
+   }
+  }
+  function clearAll() {
+   localStorage.clear();
+   sessionStorage.clear();
+   alert("Preferences cleared");
+  }
+ </script>
+</head>
+<body onload="loadPref()">
+<center>
+<h2>Choose Your Preference</h2>
+<select id="theme">
+  <option>Dark</option>
+  <option>Light</option>
+  <option>Auto</option>
+</select>
+<br><br>
+<button onclick="savePref()">
+  Save Preference
+</button>
+<button onclick="clearAll()">
+  Reset
+</button>
+</center>
+</body>
+</html>

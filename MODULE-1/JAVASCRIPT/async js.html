@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async Await Example</title>
+</head>
+<body>
+<h2 id="display">Loading content...</h2>
+<script>
+function fetchWorkshops(){
+    return new Promise(function(resolve){
+        setTimeout(function(){
+            resolve(["Yoga","Coding"]);
+        },2000);
+    });
+}
+async function loadWorkshops(){
+    let workshops = await fetchWorkshops();
+    document.getElementById("display").innerHTML =
+    workshops.join(" - ");
+}
+loadWorkshops();
+</script>
+</body>
+</html>

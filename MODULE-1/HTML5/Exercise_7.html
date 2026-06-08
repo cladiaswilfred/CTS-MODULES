@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <title>Movie Preview</title>
+ <script>
+  function videoReady() {
+   alert("Video is ready to play");
+  }
+  window.onbeforeunload = function(e) {
+   e.returnValue = "You may lose your progress!";
+   return "You may lose your progress!";
+  }
+ </script>
+</head>
+<body>
+<center>
+<h2>New Movie Trailer</h2>
+<video width="500" controls oncanplay="videoReady()">
+  <source src="preview.mp4" type="video/mp4">
+</video>
+</center>
+</body>
+</html>

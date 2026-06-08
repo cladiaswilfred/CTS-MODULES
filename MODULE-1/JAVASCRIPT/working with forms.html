@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Handling</title>
+</head>
+<body>
+<form id="enrollForm">
+    <input type="text" name="studentName"
+    placeholder="Enter Name">
+    <br><br>
+    <input type="email" name="studentEmail"
+    placeholder="Email ID">
+    <br><br>
+    <select name="course">
+        <option>Physics</option>
+        <option>Chemistry</option>
+    </select>
+    <br><br>
+    <button type="submit">
+        Enroll Now
+    </button>
+</form>
+<p id="msg"></p>
+<script>
+    document.getElementById("enrollForm")
+    .addEventListener("submit", function(ev){
+        ev.preventDefault();
+        let fullName =
+        this.elements["studentName"].value;
+        if(fullName == ""){
+            document.getElementById("msg")
+            .innerHTML = "Name is required";
+        }
+        else{
+            alert("Enrollment Confirmed");
+        }
+    });
+</script>
+</body>
+</html>

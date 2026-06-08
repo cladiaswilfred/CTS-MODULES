@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand-link" href="#"><i class="fa-solid fa-calendar-check"></i> EventHub</a>
+        <ul class="nav-links">
+            <li><a class="active" href="#home">Explore</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#signupSection">Register</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li>
+                <div class="search-box">
+                    <input type="search" id="globalSearch" placeholder="Search...">
+                    <button type="button"><i class="fa-solid fa-search"></i></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main>
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Discover events <span>near you.</span></h1>
+            <p>Handpicked gatherings, local talent, and unforgettable moments waiting for you.</p>
+            <div class="hero-btns">
+                <a href="#events" class="btn btn-primary btn-lg">Browse</a>
+                <button id="locateBtn" class="btn btn-outline btn-lg"><i class="fa-solid fa-location-crosshairs"></i> Nearby</button>
+            </div>
+            <p id="geoOut" class="text-secondary" style="font-size:0.9rem;"></p>
+            <div class="promo-banner">
+                <i class="fa-solid fa-bolt" style="color:var(--yellow);"></i>
+                <span>Limited: <span class="badge">20% OFF</span> on premium passes!</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container flex-layout">
+        <aside>
+            <div class="panel">
+                <h4><i class="fa-solid fa-sliders"></i> Filters</h4>
+                <div class="filter-group">
+                    <label>Category</label>
+                    <select id="catFilter">
+                        <option value="all">All</option>
+                        <option value="music">Music</option>
+                        <option value="sports">Sports</option>
+                        <option value="tech">Tech</option>
+                        <option value="food">Food</option>
+                        <option value="art">Art</option>
+                    </select>
+                </div>
+                <div class="sidebar-btns">
+                    <button class="btn btn-primary btn-sm" onclick="applyFilter()">Apply</button>
+                    <button class="btn btn-outline btn-sm" id="resetPrefs">Reset</button>
+                </div>
+                <div style="margin-top:40px;">
+                    <h4 style="font-size:1rem;"><i class="fa-solid fa-rss"></i> Feed</h4>
+                    <div class="feed-item"><strong>New:</strong> Coding workshops added for July.</div>
+                    <div class="feed-item"><strong>Alert:</strong> Marathon registration ends soon.</div>
+                    <div class="feed-item"><strong>News:</strong> Surprise performer for Summer Bash.</div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="main-area">
+            <section id="events">
+                <div class="section-header">
+                    <h2>Upcoming</h2>
+                    <div class="view-switch">
+                        <button class="btn btn-outline btn-sm active" id="viewList"><i class="fa-solid fa-list"></i></button>
+                        <button class="btn btn-outline btn-sm" id="viewGrid"><i class="fa-solid fa-grid-2"></i></button>
+                    </div>
+                </div>
+                <div class="event-grid" id="listContainer"></div>
+            </section>
+
+            <section id="signupSection" class="form-panel panel" style="margin-top:60px;">
+                <h2>Sign Up</h2>
+                <form id="bookingForm" novalidate>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="fullName">Name</label>
+                            <input type="text" id="fullName" placeholder="Your name" required autofocus>
+                        </div>
+                        <div class="field">
+                            <label for="emailAddr">Email</label>
+                            <input type="email" id="emailAddr" placeholder="you@domain.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="phoneNum">Phone</label>
+                            <input type="tel" id="phoneNum" placeholder="123-456-7890" required onblur="checkPhone(this)">
+                            <div class="err-msg" id="phoneErr">Format: 123-456-7890</div>
+                        </div>
+                        <div class="field">
+                            <label for="prefDate">Date</label>
+                            <input type="date" id="prefDate" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="field" style="flex:2;">
+                            <label for="eventKind">Event</label>
+                            <select id="eventKind" required onchange="calcFee()">
+                                <option value="" disabled selected>Choose...</option>
+                                <option value="music" data-fee="25">Music ($25)</option>
+                                <option value="sports" data-fee="15">Sports ($15)</option>
+                                <option value="tech" data-fee="50">Tech ($50)</option>
+                                <option value="free" data-fee="0">Free</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <div class="fee-box">
+                                <small>Total</small>
+                                <span class="amount" id="feeDisplay">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="msgField">Notes</label>
+                        <textarea id="msgField" placeholder="Anything else?" rows="3"></textarea>
+                        <div class="char-hint"><span id="charCount">0</span> / 200</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">Confirm <i class="fa-solid fa-arrow-right" style="margin-left:8px;"></i></button>
+                    </div>
+                </form>
+                <div class="confirm-box" id="confirmBox">
+                    <h5><i class="fa-solid fa-circle-check"></i> Booked</h5>
+                    <div id="confirmMsg"></div>
+                </div>
+            </section>
+
+            <section id="gallery" style="margin-bottom:60px;">
+                <h2 style="font-size:2rem;font-weight:700;margin-bottom:28px;">Moments</h2>
+                <div class="gallery-grid">
+                    <figure>
+                        <img src="https://picsum.photos/seed/m1/400/300" alt="Concert" title="Live Music" ondblclick="zoomGallery(this)">
+                        <figcaption>Live Music</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://picsum.photos/seed/m2/400/300" alt="Crowd" title="Night Vibes" ondblclick="zoomGallery(this)">
+                        <figcaption>Night Vibes</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://picsum.photos/seed/m3/400/300" alt="Food" title="Tastes" ondblclick="zoomGallery(this)">
+                        <figcaption>Tastes</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://picsum.photos/seed/m4/400/300" alt="Art" title="Gallery" ondblclick="zoomGallery(this)">
+                        <figcaption>Gallery</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://picsum.photos/seed/m5/400/300" alt="Run" title="Marathon" ondblclick="zoomGallery(this)">
+                        <figcaption>Marathon</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://picsum.photos/seed/m6/400/300" alt="Workshop" title="Code Lab" ondblclick="zoomGallery(this)">
+                        <figcaption>Code Lab</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <div class="media-row">
+                <div class="panel" style="margin:0;">
+                    <h4><i class="fa-solid fa-play"></i> Promo</h4>
+                    <div class="video-box">
+                        <video id="promoVideo" controls oncanplay="mediaIsReady()" poster="https://picsum.photos/seed/vid1/400/300">
+                            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                        </video>
+                        <div id="vidStatus" class="vid-status hidden">Ready</div>
+                    </div>
+                </div>
+                <div class="panel" style="margin:0;">
+                    <h4><i class="fa-solid fa-question-circle"></i> FAQs</h4>
+                    <details class="faq-item" open>
+                        <summary>How do I join?</summary>
+                        <div class="faq-body">Fill the registration form above. You will receive a confirmation email.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Cancel policy?</summary>
+                        <div class="faq-body">Full refund up to 48 hours before the event.</div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Kids allowed?</summary>
+                        <div class="faq-body">Depends on the event. Check the details page.</div>
+                    </details>
+                </div>
+            </div>
+
+            <section>
+                <div class="help-card">
+                    <div class="avatar-side">
+                        <img src="https://picsum.photos/seed/admin1/120/120" alt="Admin">
+                        <h5>Support</h5>
+                        <p>Team Lead</p>
+                    </div>
+                    <div class="info-side">
+                        <h4>Need Assistance?</h4>
+                        <p>Our team is available 24/7 for registrations, issues, and event queries.</p>
+                        <div class="actions">
+                            <a href="mailto:help@eventhub.local" class="btn btn-primary btn-sm"><i class="fa-solid fa-envelope"></i> Email</a>
+                            <a href="tel:+1234567890" class="btn btn-outline btn-sm"><i class="fa-solid fa-phone"></i> Call</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h5><i class="fa-solid fa-calendar-check"></i> EventHub</h5>
+            <p>Connecting people through curated local events and experiences.</p>
+        </div>
+        <div>
+            <h5>Links</h5>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="help.html" target="_blank">Guide <i class="fa-solid fa-external-link-alt" style="font-size:0.7rem;"></i></a></li>
+            </ul>
+        </div>
+        <div id="contact">
+            <h5>Connect</h5>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-discord"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-btm">
+        <p>&copy; 2026 EventHub Portal. All rights reserved.</p>
+    </div>
+</footer>
+
+<div id="detailModal" class="modal-wrap">
+    <div class="modal-box">
+        <div class="modal-head">
+            <h5 id="modalTitle">Details</h5>
+            <button onclick="closeModal('detailModal')"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <img id="modalImg" src="" alt="" class="modal-pic">
+        <div class="modal-info">
+            <div class="modal-tags">
+                <span id="modalCat" class="modal-badge">Category</span>
+                <span id="modalFee" class="modal-price">Fee</span>
+            </div>
+            <p id="modalDesc" class="modal-desc"></p>
+            <div class="modal-meta">
+                <div><i class="fa-solid fa-calendar-day"></i> <span id="modalDate"></span></div>
+                <div><i class="fa-solid fa-location-dot"></i> <span id="modalLoc"></span></div>
+            </div>
+        </div>
+        <div class="modal-foot">
+            <button class="btn btn-outline btn-sm" onclick="closeModal('detailModal')">Close</button>
+            <button class="btn btn-primary btn-sm" onclick="goBooking()">Book Now</button>
+        </div>
+    </div>
+</div>
+
+<div id="imageModal" class="modal-wrap img-modal">
+    <div class="modal-box">
+        <div class="modal-head" style="border:none;justify-content:flex-end;">
+            <button onclick="closeModal('imageModal')" style="font-size:2rem;color:#fff;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <img id="zoomImg" src="" alt="Zoomed">
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

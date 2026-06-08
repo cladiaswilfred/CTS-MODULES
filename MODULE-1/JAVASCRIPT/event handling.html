@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Event Handling in JS</title>
+</head>
+<body>
+<button id="regBtn">
+    Register
+</button>
+<br><br>
+<select id="categorySelect">
+    <option>Sports</option>
+    <option>Music</option>
+</select>
+<br><br>
+<input type="text"
+placeholder="Search Workshop"
+id="searchBox">
+<script>
+    document.getElementById("regBtn")
+    .addEventListener("click", function(){
+        alert("Registration Successful");
+    });
+    document.getElementById("categorySelect")
+    .addEventListener("change", function(){
+        console.log("Selected:", this.value);
+    });
+    document.getElementById("searchBox")
+    .addEventListener("keydown", function(){
+        console.log("Searching...");
+    });
+</script>
+</body>
+</html>
